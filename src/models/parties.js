@@ -13,4 +13,5 @@ const parties = [{
     name: 'PDI',
     hqAddress: 'Nyarugenge'
   }
-]
+];
+export default parties;
