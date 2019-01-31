@@ -12,6 +12,7 @@ break
 }
 return checkParties
 }
+
 /* create a party */
 static create(req, res) {
 const newParty = {
