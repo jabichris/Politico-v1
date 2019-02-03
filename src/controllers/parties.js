@@ -48,5 +48,6 @@ static getAll(req, res) {
       error: 'parties not found!',
     });
   }
+  
 }
 export default Parties
