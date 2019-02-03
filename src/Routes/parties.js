@@ -7,5 +7,4 @@ router.post('/', Parties.create);
 router.get('/', Parties.getAll);
 router.get('/:id', Parties.getOne);
 
-
 export default router

@@ -1,12 +1,14 @@
 import express from 'express';
-import router from './Routes/parties'
+import partiesRouter from './Routes/parties';
+import officeRouter from './Routes/offices';
 
-// const router = express.Router();
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-app.use('/api/v1/parties', router)
+app.use('/api/v1/parties', partiesRouter)
+app.use('/api/v1/offices', officeRouter)
+
 export default app;
