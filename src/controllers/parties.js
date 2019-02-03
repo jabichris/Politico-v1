@@ -48,6 +48,28 @@ static getAll(req, res) {
       error: 'parties not found!',
     });
   }
-  
+
+  static getOne(req, res) {
+    let party = {};
+
+    for (let key in parties) {
+      if (parties[key].id === parseInt(req.params.id)) {
+        party = parties[key];
+        break;
+      }
+    }
+
+    if (Object.keys(party).length > 0) {
+      return res.status(200).json({
+        status: 200,
+        data: party,
+      });
+    }
+
+    return res.status(400).json({
+      status: 400,
+      error: 'Party not found!',
+    });
+  }
 }
 export default Parties
