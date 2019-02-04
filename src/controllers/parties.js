@@ -90,10 +90,7 @@ static deleteParty(req, res){
     error: 'Party was not deleted',
   });
 }
-static updateParty(req, res){
-  
 
-}
 }
 
 export default Parties
