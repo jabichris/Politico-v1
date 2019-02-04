@@ -35,7 +35,7 @@ error: 'party not created'
 });
 }
 
-  /* get all meetups */
+/* get all parties */
 static getAll(req, res) {
     if (Object.keys(parties).length > 0) {
       return res.status(200).json({
@@ -48,8 +48,8 @@ static getAll(req, res) {
       error: 'parties not found!',
     });
   }
-
-  static getOne(req, res) {
+/*get a particular party*/
+static getOne(req, res) {
     let party = {};
     for (let key in parties) {
       if (parties[key].id === parseInt(req.params.id)) {
@@ -68,6 +68,28 @@ static getAll(req, res) {
       error: 'Party not found!',
     });
   }
+/*  delete a particular political party */
+static deleteParty(req, res){
+  const partiesNumber = parties.length;
+  let newPartiesNumber = parties.length;
+  for (let i in parties){
+    if (parties[i].id === parseInt(req.params.id)){
+      parties.splice(i, 1);
+      newPartiesNumber -= 1;
+      break;
+    } 
+  }
+  if (newPartiesNumber < partiesNumber){
+    return res.status(200).json({
+      status:200,
+      data: 'Party was Deleted ',
+    });
+  }
+  return res.status(400).json({
+    status:400,
+    error: 'Party was not deleted',
+  });
+}
 }
 
 export default Parties
