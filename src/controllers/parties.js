@@ -35,5 +35,19 @@ status: 400,
 error: 'party not created'
 });
 }
+
+  /* get all meetups */
+static getAll(req, res) {
+    if (Object.keys(parties).length > 0) {
+      return res.status(200).json({
+        status: 200,
+        data: parties,
+      });
+    }
+    return res.status(400).json({
+      status: 400,
+      error: 'parties not found!',
+    });
+  }
 }
 export default Parties
