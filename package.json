@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register src/tests/index.js",
+    "cover": "istanbul cover _mocha -- --compilers js:babel-register src/tests/index.js",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "build": "babel src/server.js --out-dir build",
     "dev": "babel-watch src/server.js"
   },
