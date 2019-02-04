@@ -34,6 +34,5 @@ status: 400,
 error: 'party not created'
 });
 }
-
 }
 export default Parties
