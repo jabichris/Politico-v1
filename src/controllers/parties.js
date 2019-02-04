@@ -34,7 +34,6 @@ status: 400,
 error: 'party not created'
 });
 }
-
 /* get all parties */
 static getAll(req, res) {
     if (Object.keys(parties).length > 0) {
@@ -90,7 +89,6 @@ static deleteParty(req, res){
     error: 'Party was not deleted',
   });
 }
-
 }
 
 export default Parties
