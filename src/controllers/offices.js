@@ -49,9 +49,10 @@ static getAllOffices(req, res) {
       error: 'offices not found!',
     });
   }
+
 /*get an office by id */
   static getOffice(req, res) {
-    let office = {};
+    let party = {};
     for (let key in offices) {
       if (offices[key].id === parseInt(req.params.id)) {
         office = offices[key];
@@ -66,7 +67,7 @@ static getAllOffices(req, res) {
     }
     return res.status(400).json({
       status: 400,
-      error: 'Office not found!',
+      error: 'office not found!',
     });
   }
 }
