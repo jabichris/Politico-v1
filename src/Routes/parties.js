@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.post('/', Parties.create);
 router.get('/', Parties.getAll);
+router.get('/:id', Parties.getOne);
+router.delete('/:id', Parties.deleteParty);
 
-export default router;
+export default router
