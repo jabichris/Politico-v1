@@ -1,4 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/jabichris/Politico-v1/badge.svg?branch=develop)](https://coveralls.io/github/jabichris/Politico-v1?branch=develop)
+
+#Politico
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
 Getting Started
