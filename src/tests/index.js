@@ -33,3 +33,13 @@ describe('GET /api/v1/parties',()=>{
     });
 });
 });
+/**test for getting one particular party */
+describe('GET /api/v1/parties/:id', () => {
+  it('should get a specific Party', (done) => {
+    chai.request(app).get('/api/v1/party/1').end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(Object.keys(res.body.data).length).to.be.above(0);
+        done();
+      });
+  });
+});
