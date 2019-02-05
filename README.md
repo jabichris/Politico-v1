@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/jabichris/Politico-v1/badge.svg?branch=develop)](https://coveralls.io/github/jabichris/Politico-v1?branch=develop) [![Build Status](https://travis-ci.org/jabichris/Politico-v1.svg?branch=develop)](https://travis-ci.org/jabichris/Politico-v1)
+[![Coverage Status](https://coveralls.io/repos/github/jabichris/Politico-v1/badge.svg?branch=develop)](https://coveralls.io/github/jabichris/Politico-v1?branch=develop) [![Build Status](https://travis-ci.org/jabichris/Politico-v1.svg?branch=develop)](https://travis-ci.org/jabichris/Politico-v1) [![Maintainability](https://api.codeclimate.com/v1/badges/ec520af03ed3f1659047/maintainability)](https://codeclimate.com/github/jabichris/Politico-v1/maintainability)
 
 # Politico
 
