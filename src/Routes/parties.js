@@ -1,5 +1,5 @@
 import express from 'express';
-import Parties from '../controllers/Parties'
+import Parties from '../controllers/parties'
 
 const router = express.Router();
 
