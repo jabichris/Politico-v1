@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register src/tests/index.js",
-    "cover": "istanbul cover _mocha -- --compilers js:babel-register src/tests/index.js --exit",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls --exit",
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 1500 --require babel-polyfill --require babel-register src/tests/index.js --exit",
+    "cover": "istanbul cover _mocha -- --compilers js:babel-register src/tests/index.js ",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "build": "babel src/server.js --out-dir build",
     "dev": "babel-watch src/server.js"
   },
@@ -29,6 +29,7 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
@@ -43,6 +44,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
     "istanbul": "^0.4.5",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "mocha-sinon": "^2.1.0",
+    "nyc": "^13.2.0"
   }
 }
