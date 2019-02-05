@@ -45,8 +45,8 @@ describe('GET /api/v1/offices/:id', () => {
       });
   });
 });
-  /* Delete a specific office */
-  describe('DELETE /api/v1/offices/:id', () => {
+/*test for Delete a specific office */
+describe('DELETE /api/v1/offices/:id', () => {
     it('should delete an existing office', (done) => {
       chai.request(app).delete('/api/v1/offices/1').end((err, res) => {
           expect(res.status).to.equal(200);
