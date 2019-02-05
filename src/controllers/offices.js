@@ -69,6 +69,28 @@ static getAllOffices(req, res) {
       error: 'Office not found!',
     });
   }
+  /*  delete a particular office */
+static deleteOffice(req, res){
+  const officesNumber = offices.length;
+  let newOfficesNumber = offices.length;
+  for (let i in offices){
+    if (offices[i].id === parseInt(req.params.id)){
+      offices.splice(i, 1);
+      newOfficesNumber -= 1;
+      break;
+    } 
+  }
+  if (newOfficesNumber < officesNumber){
+    return res.status(200).json({
+      status:200,
+      data: 'Office was Deleted ',
+    });
+  }
+  return res.status(400).json({
+    status:400,
+    error: 'Office was not deleted',
+  });
+}
 }
 
 export default Offices
