@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/jabichris/Politico-v1/badge.svg?branch=develop)](https://coveralls.io/github/jabichris/Politico-v1?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/jabichris/Politico-v1/badge.svg?branch=develop)](https://coveralls.io/github/jabichris/Politico-v1?branch=develop) [![Build Status](https://travis-ci.org/jabichris/Politico-v1.svg?branch=develop)](https://travis-ci.org/jabichris/Politico-v1)
 
 # Politico
 
