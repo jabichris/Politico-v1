@@ -89,6 +89,34 @@ static deleteParty(req, res){
     error: 'Party was not deleted',
   });
 }
+
+static editParty(req, res) {
+  const id = parseInt(req.params);
+  const { name } = req.body;
+for ( let key in parties){
+    const party = parties[key];
+    if (parties[key].id === id) {
+      if (Object.keys(party)) {
+        res.status(200).send({
+          status: 200,
+          data: [{
+           id:parties[key],
+           name,
+          }],
+        });
+      } else {
+        res.status(400).send({
+          status: 400,
+          error: 'Party name is required',
+        });
+      }
+    }
+  };
+       res.status(404).send({
+       status: 404,
+      error: 'Party does not exist',
+  });
+}
 }
 
 export default Parties
