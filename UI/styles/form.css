@@ -8,7 +8,6 @@ div.login_container {
     margin: 0 auto; 
     text-align: left; 
     }
-
 input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
     font-size: 0.75em;
     color: black;
@@ -16,7 +15,6 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
     -webkit-transition: all 0.225s ease;
     transition: all 0.225s ease;
 }
-
 .styled-input {
     float: left;
     width: 293px;
@@ -24,13 +22,11 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
     position: relative;
     border-radius: 4px;
 }
-
 @media only screen and (max-width: 768px){
     .styled-input {
         width:100%;
     }
 }
-
 .styled-input label {
     color: rgb(26, 5, 5);
     padding: 1.3rem 30px 1rem 30px;
@@ -41,7 +37,6 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
     transition: all 0.25s ease;
     pointer-events: none;
 }
-
 .styled-input.wide { 
     width: 650px;
     max-width: 100%;
@@ -56,32 +51,26 @@ textarea {
     color: white;
     border-radius: 16px;
 }
-
 .forgot_password a{
   color: #38A1F3;
 }
-
 input:focus,
 textarea:focus { outline: 0; }
-
 input:focus ~ span,
 textarea:focus ~ span {
     width: 100%;
     -webkit-transition: all 0.075s ease;
     transition: all 0.075s ease;
 }
-
 textarea {
     width: 100%;
     min-height: 15em;
 }
-
 .input-container {
     width: 650px;
     max-width: 100%;
     margin: 20px auto 25px auto;
 }
-
 .submit-btn {
     display: inline-block;
     padding: 7px 35px;
@@ -95,15 +84,12 @@ textarea {
               0 2px 10px 0 rgba(0,0,0,0.07);
     -webkit-transition: all 150ms ease;
     transition: all 150ms ease;
-
 }
-
 .submit-btn:hover {
     transform: translateY(1px);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,0.10),
               0 1px 1px 0 rgba(0,0,0,0.09);
 }
-
 @media (max-width: 768px) {
     .submit-btn {
         width:100%;
@@ -111,12 +97,10 @@ textarea {
         text-align:center;
     }
 }
-
 input[type=checkbox] + label {
   color: #ccc;
   font-style: italic;
 } 
-
 input[type=checkbox]:checked + label {
   color: #f00;
   font-style: normal;
