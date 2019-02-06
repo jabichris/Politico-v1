@@ -91,32 +91,29 @@ static deleteParty(req, res){
 }
 /*  edit a particular political party */
 static editParty(req, res) {
-  const id = parseInt(req.params);
-  const { name } = req.body;
-for ( let key in parties){
-    const party = parties[key];
-    if (parties[key].id === id) {
-      if (Object.keys(party)) {
+  const partyId = parseInt(req.params.id);
+  let updatedParty = "";
+for ( let i=0; i < parties.length;i++){
+    if (parties[i].id == partyId) {
+      if (req.body.name)
+      parties[i].name = req.body.name;
+      if(req.body.hqAddress)
+      parties[i].hqAddress=req.body.hqAddress;
         res.status(200).send({
           status: 200,
-          data: [{
-           id:parties[key],
-           name,
-          }],
+          data: parties[i]
         });
-      } else {
-        res.status(400).send({
-          status: 400,
-          error: 'Party name is required',
+        updatedParty = "done"
+      } 
+      }
+      if (updatedParty != "done"){
+        res.status(404).send({
+          status: 404,
+          error: 'Party not updated',
         });
       }
     }
-  };
-       res.status(404).send({
-       status: 404,
-      error: 'Party does not exist',
-  });
-}
+  
 }
 
 export default Parties
