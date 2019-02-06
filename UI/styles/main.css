@@ -216,9 +216,14 @@ a {
   max-width: 40%;
   max-height:40%;
   height: auto;
-  
+  margin-top: 10px;
+  margin-left: 20px;
 }
-
+.profilepic p{
+  float: left;
+  margin-left: 20px;
+  margin-top: -3px
+}
 .side-menu nav ul li{
   padding: 20px;
   margin-bottom: 6px;
