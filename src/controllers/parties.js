@@ -89,7 +89,7 @@ static deleteParty(req, res){
     error: 'Party was not deleted',
   });
 }
-
+/*  edit a particular political party */
 static editParty(req, res) {
   const id = parseInt(req.params);
   const { name } = req.body;
