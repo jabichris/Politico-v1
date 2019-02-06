@@ -1,4 +1,4 @@
- [![Build Status](https://travis-ci.org/jabichris/Politico-v1.svg?branch=develop)[!<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a><a href="https://codeclimate.com/github/jabichris/Politico-v1/test_coverage"><img src="https://api.codeclimate.com/v1/badges/ec520af03ed3f1659047/test_coverage" /></a>
+[!<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a><a href="https://codeclimate.com/github/jabichris/Politico-v1/test_coverage"><img src="https://api.codeclimate.com/v1/badges/ec520af03ed3f1659047/test_coverage" /></a>
 
 # Politico
 
