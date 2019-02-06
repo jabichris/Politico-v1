@@ -1,5 +1,9 @@
 # dotenv environment variables file
 .env
 .env.test
-# Dependency directories
+# Dependency directory
 node_modules/
+# Coverage directory 
+coverage
+# nyc test coverage
+.nyc_output
