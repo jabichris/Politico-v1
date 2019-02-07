@@ -4,21 +4,17 @@ width:60%;
 overflow:hidden;
 margin: auto;
 }
-
 table {
   width: 100%;
   margin-left:-8px;
   padding-left: -80px;
 }
-
 tr:nth-child(odd) {
   background-color: #ccc;
 }
-
 td {
   padding: 0.25em 0.25em;
 }
-
 @media (max-width: 500px) {
   table,
   thead, 
@@ -29,7 +25,6 @@ td {
     display: block;
     overflow: hidden;
   }
-  
   thead {
     tr {
       position: absolute; 
@@ -55,9 +50,6 @@ td {
     }
   }
 }
-
-
-
 @media (max-width: 700px) {
   .menu-button-container {
     display: flex;
@@ -86,7 +78,6 @@ td {
   #menu-toggle:checked ~ .menu  {
     display: block;
   }
-
   #menu-toggle:checked ~ .menu li {
     border: 1px solid #333;
     height: 2.5em;
@@ -106,7 +97,6 @@ td {
     border-bottom: 1px solid #444;
   }
 }
-
 #container a{
   text-decoration: none;
 }
@@ -122,4 +112,11 @@ td {
   }
  p{
   text-align: center;
+}
+#showcase button{
+color: #38A1F3;
+-moz-text-size-adjust: auto;
+}
+.button__badge{
+  margin-left:5px; 
 }
