@@ -4,7 +4,7 @@
 
 Politico enables citizens give their mandate to politicians running for different government offices while building trust in the process through transparency.
 
-Getting Started
+#### Getting Started
 
 Installing dependencies
 
@@ -18,6 +18,6 @@ Authors
 
 *JABIRO Christian
 
-License
+#### License
 
 *This project is licensed under the MIT License - see the LICENSE.md file for details
