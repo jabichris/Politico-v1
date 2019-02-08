@@ -7,6 +7,6 @@ router.post('/', Parties.create);
 router.get('/', Parties.getAll);
 router.get('/:id', Parties.getOne);
 router.delete('/:id', Parties.deleteParty);
-router.patch('/:id', Parties.editParty);
+router.patch('/:id/name', Parties.editParty);
 
 export default router

@@ -1,5 +1,3 @@
-
-
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
@@ -47,11 +45,20 @@ describe('GET /api/v1/parties/:id', () => {
 });
   /* Delete a specific party */
   describe('DELETE /api/v1/parties/:id', () => {
-    it('Should delete an existing party', (done) => {
-      chai.request(app).delete('/api/v1/parties/1').end((err, res) => {
+    it('Should delete an single party', (done) => {
+      chai.request(app).delete('/api/v1/parties/1').end((error, res) => {
           expect(res.status).to.equal(200);
           expect(Object.keys(res.body.data).length).to.be.above(0);
           done();
         });
     });
   }); 
+  /* test for edit party */
+  describe('PATCH /api/v1/parties/:id/name', ()=>{
+      it('Should edit an existing party', (done) => { 
+        chai.request(app).patch('/api/v1/parties/1/RPF').end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        })
+      })
+  })

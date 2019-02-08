@@ -92,7 +92,7 @@ static deleteParty(req, res){
 /*  edit a particular political party */
 static editParty(req, res) {
   const partyId = parseInt(req.params.id);
-  let updatedParty = "";
+  // let updatedParty = "";
 for ( let i=0; i < parties.length;i++){
     if (parties[i].id == partyId) {
       if (req.body.name)
@@ -116,4 +116,4 @@ for ( let i=0; i < parties.length;i++){
   
 }
 
-export default Parties
+export default Parties;
