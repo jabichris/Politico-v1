@@ -212,6 +212,9 @@ margin-top: -10px;
   border-left: solid 4px #38A1F3;
   color: #38A1F3;
 }
+.active{
+  background-color: #38A1F3;
+}
 .flecha{
   transition: all 0.3s;
 }
