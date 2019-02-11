@@ -13,15 +13,24 @@ html, body {
 }
 a {
   text-decoration: none;
-
+}
+#main p{
+  margin-left: 15%;
+  margin-right: 15%
+}
+#title {
+  margin-right:10%;
 }
 #contact-us h1{
   text-align: center;
+  margin-top: 6%;
 }
-#main h1{
+#main div{
   text-align: center;
 }
-
+#main{
+  position: inline;
+}
 .center {
   display: block;
     margin-left: auto;
@@ -41,13 +50,14 @@ a {
   position: sticky;
 }
 
-#logo span{
+span{
     position: relative;
     top: -20px;
     font-weight:bold;
     font: italic bold 24px/60px Georgia, serif;
     color: #38a1f3;
 }
+
 .menu {
   display: flex;
   flex-direction: row;
@@ -132,7 +142,7 @@ a {
 /*css for pricing section*/
 #offices{
 
-  width: 100%;
+  width: 80%;
   height: auto;
   display: flex;
   justify-content: space-around;
@@ -144,13 +154,17 @@ a {
 /*card css*/
 
 .card {
-  width: 40%;
+  width: 25%;
   background-color: #e8e8e8;
   text-align: center;
   border: 5px solid #3B5998;
   cursor: pointer;
   transition: .5s ease-out;
 
+}
+#offices {
+  /* margin-left: 10%; */
+  margin-right: 10%;
 }
 #offices h1 {
   font-size: 28px;
@@ -204,8 +218,6 @@ a {
   border-right: solid 1px #d1d1d1;
   box-shadow: 2px 1px 15px rgba(0,0,0,0.1);
   z-index: 10;
-
-
 }
 .profilepic{
   align-items: center;
@@ -218,11 +230,12 @@ a {
   height: auto;
   margin-top: 10px;
   margin-left: 20px;
+  margin-left: 25%;
 }
 .profilepic p{
-  float: left;
-  margin-left: 20px;
-  margin-top: -3px
+  float: center;
+  margin-left: 10px;
+  margin-right: 15%;
 }
 .side-menu nav ul li{
   padding: 20px;
