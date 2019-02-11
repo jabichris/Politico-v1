@@ -28,7 +28,7 @@ describe('POST /api/v1/offices', () => {
 /**test for getting all offices */
 describe('GET /api/v1/offices',()=>{
   it('Should return an array of offices',(done)=>{
-    chai.request(app).get('/api/v1/offices').end((err, res)=>{
+    chai.request(app).get('/api/v1/offices').send({id: '3'}).end((err, res)=>{
       expect(res.status).to.equal(200);
       expect(res.body.data.length).to.be.above(0);
       done();

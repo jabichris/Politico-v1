@@ -21,8 +21,7 @@
   "homepage": "https://github.com/jabichris/Politico-v1#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "moment": "^2.24.0",
-    "uuid": "^3.3.2"
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
