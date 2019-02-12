@@ -138,9 +138,6 @@ a {
   cursor: pointer;
   transition: .5s ease-out;
 }
-#offices {
-  margin-right: 10%;
-}
 #offices h1 {
   font-size: 28px;
   background-color: #38A1F3;
