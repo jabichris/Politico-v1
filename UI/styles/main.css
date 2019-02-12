@@ -12,12 +12,19 @@ html, body {
 }
 a {
   text-decoration: none;
-
+}
+#main p{
+  margin-left: 15%;
+  margin-right: 15%
+}
+#title {
+  margin-right:10%;
 }
 #contact-us h1{
   text-align: center;
+  margin-top: 6%;
 }
-#main h1{
+#main div{
   text-align: center;
 }
 .center {
@@ -45,6 +52,7 @@ a {
     font: italic bold 24px/60px Georgia, serif;
     color: #38a1f3;
 }
+
 .menu {
   display: flex;
   flex-direction: row;
@@ -111,9 +119,8 @@ a {
   top: 0;
   right: 0;
 }
-/*css for offices section*/
 #offices{
-  width: 100%;
+  width: 80%;
   height: auto;
   display: flex;
   justify-content: space-around;
@@ -124,7 +131,7 @@ a {
 }
 /*card css*/
 .card {
-  width: 40%;
+  width: 25%;
   background-color: #e8e8e8;
   text-align: center;
   border: 5px solid #3B5998;
@@ -188,14 +195,14 @@ a {
 .profilepic div img{
   max-width: 40%;
   max-height:40%;
-  height: auto; 
-  margin-left: 20px;
+  height: auto;
   margin-top: 10px;
+  margin-left: 20px;
+  margin-left: 25%;
 }
 .profilepic p{
-float: left;
-margin-left: 25px;
-margin-top: -10px;
+  float: center;
+  margin-left: 10px;
 }
 .side-menu nav ul li{
   padding: 20px;
