@@ -6,11 +6,9 @@ margin: auto;
 }
 
 table {
-  width: 100%;
-  margin-left:-8px;
-  margin-top: -30px;
-  padding-left: -80px;
-}
+  width: 90%;
+  margin-left:10px 0px 0 10px;
+  }
 
 tr:nth-child(odd) {
   background-color: #ccc;
@@ -18,7 +16,7 @@ tr:nth-child(odd) {
 
 td {
   padding: 0.25em 0.25em;
-}
+  }
 
 @media (max-width: 500px) {
   table,
@@ -57,13 +55,43 @@ td {
   }
 }
 
-
+button {
+  margin-top:5px;
+  width: 100px;
+  height: 50px;
+  background-color: #38A1F3;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
 
 @media (max-width: 700px) {
   .menu-button-container {
     display: flex;
-
   }
+  nav ul li{  
+    display: inline;
+  }
+  #showcase{
+    display: inline-block;
+    width: 100%;
+  }
+  .side-menu{
+    display: inline-block;
+    width: 100%;
+  }
+  table{
+  float: right;
+}
+#right{
+  width: 80%;
+  float: left;
+  padding-left: 20px;
+} ;
+  nav ul li{
+    display: inline;
+  }
+
   .menu {
     position: absolute;
     top: 0;
@@ -73,6 +101,7 @@ td {
     width: 100%;
     justify-content: center;
     align-items: center;
+    opacity: 0.3;
   }
   #menu-toggle ~ .menu{
     display: none;
@@ -124,3 +153,4 @@ td {
  p{
   text-align: center;
 }
+
