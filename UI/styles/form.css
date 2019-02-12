@@ -11,7 +11,7 @@ div.login_container {
 
 input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
     font-size: 0.75em;
-    color: black;
+    color: white;
     top: -8px;
     -webkit-transition: all 0.225s ease;
     transition: all 0.225s ease;
@@ -23,17 +23,19 @@ input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid
     margin: 1rem 0;
     position: relative;
     border-radius: 4px;
+    
 }
 
 @media only screen and (max-width: 768px){
     .styled-input {
         width:100%;
+        
     }
 }
 
 .styled-input label {
-    color: rgb(26, 5, 5);
-    padding: 1.3rem 30px 1rem 30px;
+    color: white;
+    padding: 1rem 30px 2rem 30px;
     position: absolute;
     top: 10px;
     left: 0;
