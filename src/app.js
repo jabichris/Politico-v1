@@ -6,9 +6,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+  extended: false,
 }));
-app.use('/api/v1/parties', partiesRouter)
-app.use('/api/v1/offices', officesRouter)
+app.use('/api/v1/parties', partiesRouter);
+app.use('/api/v1/offices', officesRouter);
 
 export default app;
