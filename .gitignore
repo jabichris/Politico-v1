@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # dotenv environment variables file
 .env
 .env.test
@@ -7,3 +8,6 @@ node_modules/
 coverage/
 # nyc test coverage
 .nyc_output
+=======
+/node_modules
+>>>>>>> 97124eabb9fd63ca93dd4a725b444dced89918c5
