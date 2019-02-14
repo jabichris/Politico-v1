@@ -24,7 +24,7 @@ npm run test
 ##Endpoints to test
 ```
 |API Endpoint              |METHODS|DESCRIPTION                |       
-|  :---                     :---:     ---:                     |
+|       ---                   ---               ---            |
 | /api/v1/parties          |GET    |This will fetch all parties|
 |/api/v1/parties/<:id>     |GET    |This will fetch one party  |
 |/api/v1/parties/          |POST   |This will create a party   |
