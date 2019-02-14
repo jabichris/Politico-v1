@@ -6,7 +6,7 @@ Politico enables citizens give their mandate to politicians running for differen
 
 ## Getting Started
 
-####Installation
+Installation
 ```
 git clone https://git@github.com:jabichris/Politico-v1.git
 npm install
@@ -21,7 +21,7 @@ run test
 ```
 npm run test
 ```
-##Endpoints to test
+## Endpoints to test
 ```
 |API Endpoint              |METHODS|DESCRIPTION                |       
 |       ---                   ---               ---            |
@@ -34,17 +34,17 @@ npm run test
 |/api/v1/offices/          |GET    |This will get all offices  |
 |/api/v1/offices/<:id>/    |GET    |This will get one party    |
 ```
-##Links
+## Links
 ```
 https://politico-by-chris.herokuapp.com/
 https://jabichris.github.io/Politico-v1/
 ```
-##Contributing
+## Contributing
 ```
 For this readme, I used this template (https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 And for the whole project,i used alot of different resources.
 ```
-##Authors
+## Authors
 ```
 JABIRO Christian
 ```
