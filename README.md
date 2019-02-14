@@ -22,6 +22,7 @@ run test
 npm run test
 ```
 ##Endpoints to test
+```
 |API Endpoint              |METHODS|DESCRIPTION                |       
 |  :---                     :---:     ---:                     |
 | /api/v1/parties          |GET    |This will fetch all parties|
@@ -32,7 +33,7 @@ npm run test
 |/api/v1/offices/          |POST   |This will create an office |
 |/api/v1/offices/          |GET    |This will get all offices  |
 |/api/v1/offices/<:id>/    |GET    |This will get one party    |
-
+```
 ##Links
 ```
 https://politico-by-chris.herokuapp.com/
