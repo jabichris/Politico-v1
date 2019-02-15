@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jabichris/Politico-v1#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "joi": "^14.3.1",
     "moment": "^2.24.0"
   },
   "devDependencies": {

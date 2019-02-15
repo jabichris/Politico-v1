@@ -23,7 +23,12 @@ class Offices {
       hqAddress: req.body.hqAddress,
     };
     offices.push(newOffice);
-
+    if (req.body.name === '') {
+      return res.status(400).send({
+        status: 400,
+        error: 'Name should not be empty',
+      });
+    }
     const isCreated = Offices.checkOffices(newOffice.id);
 
     if (Object.keys(isCreated).length > 0) {

@@ -2,6 +2,8 @@
 /* eslint-disable radix */
 /* eslint-disable no-restricted-syntax */
 import parties from '../models/parties';
+// eslint-disable-next-line import/no-unresolved
+// import validateParty from '../helpers/validate';
 
 class Parties {
   /* check if the Party exists */
@@ -24,6 +26,12 @@ class Parties {
       name: req.body.name,
       hqAddress: req.body.hqAddress,
     };
+    if (req.body.name === '') {
+      return res.status(400).send({
+        status: 400,
+        error: 'Name should not be empty',
+      });
+    }
     parties.push(newParty);
 
     const isCreated = Parties.checkParties(newParty.id);
