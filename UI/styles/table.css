@@ -3,6 +3,8 @@
   width:60%;
   overflow:hidden;
   margin: auto;
+  padding: 5px;
+  padding-right: 25px;
   }
   table {
     width: 100%;
