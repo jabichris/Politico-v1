@@ -120,3 +120,11 @@
   .button__badge{
     margin-left:5px; 
   }
+  button{
+    background-color: #38A1F3;
+    width: 128px;
+    height: 32px;
+    border-radius: 20px;
+    color:white;
+    font-weight:bold;
+  }
