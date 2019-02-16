@@ -9,4 +9,4 @@ router.get('/:id', Parties.getOne);
 router.delete('/:id', Parties.deleteParty);
 router.patch('/:id/name', Parties.editParty);
 
-export default router
+export default router;

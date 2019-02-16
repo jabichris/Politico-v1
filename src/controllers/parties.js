@@ -109,8 +109,7 @@ class Parties {
   /*  edit a particular political party */
   static editParty(req, res) {
     const partyId = parseInt(req.params.id);
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < parties.length; i++) {
+    for (let i = 0; i < parties.length; i += 1) {
       if (parties[i].id === partyId) {
         if (req.body.name) { parties[i].name = req.body.name; }
         if (req.body.hqAddress) { parties[i].hqAddress = req.body.hqAddress; }
@@ -118,11 +117,10 @@ class Parties {
           status: 200,
           data: parties[i],
         });
-        updatedParty = 'done';
       }
     }
-    // eslint-disable-next-line eqeqeq
-    if (updatedParty != 'done') {
+    const updatedParty = 'done';
+    if (updatedParty !== 'done') {
       res.status(404).send({
         status: 404,
         error: 'Party not updated',
