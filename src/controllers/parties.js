@@ -1,65 +1,37 @@
-/* eslint-disable no-undef */
 /* eslint-disable radix */
 /* eslint-disable no-restricted-syntax */
+import db from '../models/db';
 import parties from '../models/parties';
-// eslint-disable-next-line import/no-unresolved
-// import validateParty from '../helpers/validate';
 
+
+/* check if the Party exists */
 class Parties {
-  /* check if the Party exists */
-
-  static checkParties(partyId) {
-    let checkParties = {};
-    for (const key in parties) {
-      if (parties[key].id === partyId) {
-        checkParties = parties[key];
-        break;
-      }
-    }
-    return checkParties;
-  }
-
-  /* create a party */
-  static create(req, res) {
-    const newParty = {
-      id: Math.ceil(Math.random() * 50),
-      name: req.body.name,
-      hqAddress: req.body.hqAddress,
-    };
-    if (req.body.name === '') {
-      return res.status(400).send({
-        status: 400,
-        error: 'Name should not be empty',
-      });
-    }
-    parties.push(newParty);
-
-    const isCreated = Parties.checkParties(newParty.id);
-
-    if (Object.keys(isCreated).length > 0) {
-      return res.status(201).json({
-        status: 201,
-        data: isCreated,
-      });
-    }
-    return res.status(400).json({
-      status: 400,
-      error: 'party not created',
-    });
-  }
-
   /* get all parties */
-  static getAll(req, res) {
-    if (Object.keys(parties).length > 0) {
-      return res.status(200).json({
-        status: 200,
-        data: parties,
+  static async getAll(req, res) {
+    try {
+      const {
+        rows,
+      } = await db.query('SELECT * FROM parties');
+      if (rows.length > 0) {
+        // eslint-disable-next-line no-shadow
+        const parties = [];
+        rows.forEach((party) => {
+          party.push(parties);
+        });
+        // eslint-disable-next-line no-console
+        console.log('Db', parties);
+        return res.status(200).json({
+          status: 200,
+          data: parties,
+        });
+      }
+      return res.status(400).json({
+        status: 400,
+        error: 'parties not found!',
       });
+    } catch (error) {
+      console.log(error);
     }
-    return res.status(400).json({
-      status: 400,
-      error: 'parties not found!',
-    });
   }
 
   /* get a particular party */
@@ -105,28 +77,5 @@ class Parties {
       error: 'Party was not deleted',
     });
   }
-
-  /*  edit a particular political party */
-  static editParty(req, res) {
-    const partyId = parseInt(req.params.id);
-    for (let i = 0; i < parties.length; i += 1) {
-      if (parties[i].id === partyId) {
-        if (req.body.name) { parties[i].name = req.body.name; }
-        if (req.body.hqAddress) { parties[i].hqAddress = req.body.hqAddress; }
-        res.status(200).send({
-          status: 200,
-          data: parties[i],
-        });
-      }
-    }
-    const updatedParty = 'done';
-    if (updatedParty !== 'done') {
-      res.status(404).send({
-        status: 404,
-        error: 'Party not updated',
-      });
-    }
-  }
 }
-
 export default Parties;

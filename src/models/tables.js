@@ -46,19 +46,16 @@ const create = () => {
         id SERIAL PRIMARY KEY,
         "firstName" VARCHAR(50) NOT NULL,
         "lastName" VARCHAR(50) NOT NULL,
-        "otherName" VARCHAR(50) NOT NULL,
         email VARCHAR(100) NULL,
-        phone VARCHAR(15) NOT NULL,
         username VARCHAR(50) NOT NULL,
         password TEXT NOT NULL,
-        "logoUrl" TEXT NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false
       )`;
 
   const partiesTable = `CREATE TABLE IF NOT EXISTS
       parties(
         id SERIAL PRIMARY KEY,
-        "userId" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+        "userId" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
         name VARCHAR(100) NOT NULL,
         "hqAddress" TEXT NOT NULL,
         "logoUrl" TEXT []  NULL,
@@ -72,14 +69,7 @@ const create = () => {
         name TEXT NOT NULL
       )`;
 
-  const candidateTable = `CREATE TABLE IF NOT EXISTS
-      candidate(
-        id SERIAL PRIMARY KEY,
-        "officesId" INT NOT NULL REFERENCES meetups(id) ON DELETE CASCADE ON UPDATE CASCADE,
-        "partyId" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-      )`;
-
-  const createQueries = `${usersTable}; ${partiesTable}; ${officesTable}; ${candidateTable};`;
+  const createQueries = `${usersTable}; ${partiesTable}; ${officesTable}; `;
 
   pool.query(createQueries)
     .then((res) => {
