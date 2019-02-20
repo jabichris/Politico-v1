@@ -10,8 +10,7 @@ const pool = new pg.Pool({
 });
 
 pool.on('connect', () => {
-  // eslint-disable-next-line no-console
-  console.log('connected to the Database');
+  console.log('connected to the Database!');
 });
 
 const drop = () => {
@@ -19,23 +18,22 @@ const drop = () => {
   const partiesTable = 'DROP TABLE IF EXISTS parties CASCADE';
   const officesTable = 'DROP TABLE IF EXISTS offices CASCADE';
   const candidateTable = 'DROP TABLE IF EXISTS candidates';
+  const votes = 'DROP TABLE IF EXISTS vote';
+  const petitions = 'DROP TABLE IF EXISTS petition';
 
-  const dropQueries = `${partiesTable}; ${officesTable}; ${candidateTable}; ${usersTable};`;
+  const dropQueries = `${usersTable};${partiesTable}; ${officesTable}; ${candidateTable}; ${votes}; ${petitions}; `;
 
   pool.query(dropQueries)
     .then((res) => {
-      // eslint-disable-next-line no-console
       console.log(res);
       pool.end();
     })
     .catch((err) => {
-      // eslint-disable-next-line no-console
       console.log(err);
       pool.end();
     });
   pool.on('remove', () => {
-    // eslint-disable-next-line no-console
-    console.log('client removed');
+    console.log('user removed');
     process.exit(0);
   });
 };
@@ -46,20 +44,21 @@ const create = () => {
         id SERIAL PRIMARY KEY,
         "firstName" VARCHAR(50) NOT NULL,
         "lastName" VARCHAR(50) NOT NULL,
+        "otherName" VARCHAR(50) NOT NULL,
         email VARCHAR(100) NULL,
+        phone VARCHAR(15) NOT NULL,
         username VARCHAR(50) NOT NULL,
         password TEXT NOT NULL,
+        "photoUrl" TEXT NOT NULL,
         "isAdmin" BOOLEAN NOT NULL DEFAULT false
       )`;
 
   const partiesTable = `CREATE TABLE IF NOT EXISTS
       parties(
         id SERIAL PRIMARY KEY,
-        "userId" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
         name VARCHAR(100) NOT NULL,
         "hqAddress" TEXT NOT NULL,
-        "logoUrl" TEXT []  NULL,
-        tags TEXT [] NULL
+        "logoUrl" TEXT []  NULL
       )`;
 
   const officesTable = `CREATE TABLE IF NOT EXISTS
@@ -69,7 +68,31 @@ const create = () => {
         name TEXT NOT NULL
       )`;
 
-  const createQueries = `${usersTable}; ${partiesTable}; ${officesTable}; `;
+  const candidateTable = `CREATE TABLE IF NOT EXISTS
+      candidates(
+        id SERIAL PRIMARY KEY,
+        "officeId" INT NOT NULL REFERENCES offices(id) ON DELETE CASCADE ON UPDATE CASCADE,
+        "partyId" INT NOT NULL REFERENCES parties(id) ON DELETE CASCADE ON UPDATE CASCADE,
+        "candidateId"INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+      )`;
+  const petitions = `CREATE TABLE IF NOT EXISTS
+      petitions(
+         id SERIAL PRIMARY KEY,
+         "createdOn" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+         "createdBy" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+         office INT NOT NULL REFERENCES offices(id) ON DELETE CASCADE ON UPDATE CASCADE,
+         body TEXT NOT NULL
+      )`;
+  const votes = `CREATE TABLE IF NOT EXISTS
+      votes(
+         id SERIAL PRIMARY KEY,
+         "createdOn" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+         "createdBy" INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+         office INT NOT NULL REFERENCES offices(id) ON DELETE CASCADE ON UPDATE CASCADE,
+         candidate INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+      )`;
+
+  const createQueries = `${usersTable}; ${partiesTable}; ${officesTable}; ${candidateTable}; ${petitions}; ${votes}`;
 
   pool.query(createQueries)
     .then((res) => {
