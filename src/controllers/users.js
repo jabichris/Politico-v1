@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
+
 // eslint-disable-next-line import/no-unresolved
 import bcrypt from 'bcrypt';
 // eslint-disable-next-line import/no-unresolved
 import jwt from 'jsonwebtoken';
 import db from '../models/db';
 // eslint-disable-next-line import/no-unresolved
+
 import Validate from '../helpers/Validate';
 
 
@@ -119,6 +121,7 @@ class User {
         status: 400,
         error: 'Try again,Username or Password is incorrect',
       });
+
     }
   }
 }
