@@ -1,6 +1,12 @@
 import dotenv from 'dotenv';
+
+// eslint-disable-next-line import/no-unresolved
 import bcrypt from 'bcrypt';
+// eslint-disable-next-line import/no-unresolved
+import jwt from 'jsonwebtoken';
 import db from '../models/db';
+// eslint-disable-next-line import/no-unresolved
+
 import Validate from '../helpers/Validate';
 
 
@@ -8,7 +14,6 @@ dotenv.config();
 
 class User {
   /* signup */
-  // eslint-disable-next-line consistent-return
   static async createAccount(req, res) {
     // Validate inputs
     const checkInputs = [];
@@ -70,6 +75,56 @@ class User {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
+    }
+  }
+
+  // eslint-disable-next-line consistent-return
+  static async signIn(req, res) {
+    let checkInput = false;
+    checkInput = Validate.email(req.body.email, true);
+    if (checkInput.isValid === false) {
+      return res.status(400).json({
+        status: 400,
+        error: checkInput.error,
+      });
+    }
+    try {
+      const {
+        rows,
+      } = await db.query('SELECT * FROM users WHERE email=$1', [req.body.email]);
+      if (rows.length > 0) {
+        for (let i = 0; i < rows.length; i += 1) {
+          if (bcrypt.compareSync(req.body.password, rows[i].password)) {
+            const kindUser = rows[i].isAdmin ? 'admin' : 'normal';
+            const token = jwt.sign({
+              userId: rows[i].id,
+              kindUser,
+            }, process.env.SECRET_KEY, {
+              expiresIn: 14400,
+            });
+            return res.status(200).json({
+              status: 200,
+              data: [{
+                token,
+                user: {
+                  id: rows[i].firstName,
+                  lastName: rows[i].lastName,
+                  email: rows[i].email,
+                  username: rows[i].username,
+                  isAdmin: rows[i].isAdmin,
+                },
+              }],
+
+            });
+          }
+        }
+      }
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Try again,Username or Password is incorrect',
+      });
+
     }
   }
 }
