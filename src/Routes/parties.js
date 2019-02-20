@@ -3,10 +3,7 @@ import Parties from '../controllers/parties';
 
 const router = express.Router();
 
-router.post('/', Parties.create);
-router.get('/', Parties.getAll);
-router.get('/:id', Parties.getOne);
-router.delete('/:id', Parties.deleteParty);
-router.patch('/:id/name', Parties.editParty);
+router.get('/', Parties.allParties);
+
 
 export default router;

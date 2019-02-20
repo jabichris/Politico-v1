@@ -1,13 +1,9 @@
-/* eslint-disable radix */
-/* eslint-disable no-restricted-syntax */
+
 import db from '../models/db';
-import parties from '../models/parties';
 
-
-/* check if the Party exists */
 class Parties {
-  /* get all parties */
-  static async getAll(req, res) {
+  // eslint-disable-next-line consistent-return
+  static async allParties(req, res) {
     try {
       const {
         rows,
@@ -77,5 +73,6 @@ class Parties {
       error: 'Party was not deleted',
     });
   }
+
 }
 export default Parties;
