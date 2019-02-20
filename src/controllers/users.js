@@ -12,7 +12,6 @@ dotenv.config();
 
 class User {
   /* signup */
-  // eslint-disable-next-line consistent-return
   static async createAccount(req, res) {
     // Validate inputs
     const checkInputs = [];
@@ -48,11 +47,15 @@ class User {
     let checkUser = '';
 
     try {
-      checkUser = await db.query('SELECT * FROM users WHERE username=$1 OR email=$2', [req.body.username, req.body.email]);
+      if (req.body.email) {
+        checkUser = await db.query('SELECT * FROM users WHERE username=$1 OR email=$2', [req.body.username, req.body.email]);
+      } else {
+        console.log('No email');
+      }
 
       if (checkUser.rows.length > 0) {
-        return res.status(400).json({
-          status: 400,
+        return res.status(200).json({
+          status: 200,
           error: 'Sorry, this account already exists',
         });
       }
@@ -68,13 +71,10 @@ class User {
         });
       }
     } catch (error) {
-      return res.status(400).json({
-        status: 400,
-        error: 'Not Resistered',
-      });
+      // eslint-disable-next-line no-console
+      console.log(error);
     }
   }
-  /* login */
 
   // eslint-disable-next-line consistent-return
   static async signIn(req, res) {
@@ -102,14 +102,17 @@ class User {
             });
             return res.status(200).json({
               status: 200,
-              data: {
-                id: rows[i].firstName,
-                lastName: rows[i].lastName,
-                email: rows[i].email,
-                username: rows[i].username,
-                isAdmin: rows[i].isAdmin,
-              },
-              token,
+              data: [{
+                token,
+                user: {
+                  id: rows[i].firstName,
+                  lastName: rows[i].lastName,
+                  email: rows[i].email,
+                  username: rows[i].username,
+                  isAdmin: rows[i].isAdmin,
+                },
+              }],
+
             });
           }
         }
