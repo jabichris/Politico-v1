@@ -1,78 +1,115 @@
-
 import db from '../models/db';
+import Validate from '../helpers/Validate';
+
 
 class Parties {
-  // eslint-disable-next-line consistent-return
+  // newParty
+  static async createParty(req, res) {
+    const checkInputs = [];
+
+    checkInputs.push(Validate.name(req.body.name, true));
+    checkInputs.push(Validate.name(req.body.hqAddress, true));
+
+    for (let i = 0; i < checkInputs.length; i += 1) {
+      if (checkInputs[i].isValid === false) {
+        return res.status(400).json({
+          status: 400,
+          error: checkInputs[i].error,
+        });
+      }
+    }
+    const text = `INSERT INTO
+            parties("name", "hqAddress", "logoUrl")
+            VALUES($1, $2, $3)
+            returning id, "name", "hqAddress", "logoUrl"`;
+    const values = [
+      req.body.name,
+      req.body.hqAddress,
+      req.body.logoUrl,
+    ];
+    try {
+      const {
+        rows,
+      } = await db.query(text, values);
+      if (rows.length > 0) {
+        return res.status(201).json({
+          status: 201,
+          data: rows[0],
+        });
+      }
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error: 'party not registered',
+      });
+    }
+  }
+
+  // Get all Parties
   static async allParties(req, res) {
     try {
       const {
         rows,
       } = await db.query('SELECT * FROM parties');
       if (rows.length > 0) {
-        // eslint-disable-next-line no-shadow
-        const parties = [];
-        rows.forEach((party) => {
-          party.push(parties);
-        });
-        // eslint-disable-next-line no-console
-        console.log('Db', parties);
         return res.status(200).json({
           status: 200,
-          data: parties,
+          data: rows,
         });
       }
+    } catch (error) {
       return res.status(400).json({
         status: 400,
-        error: 'parties not found!',
+        error: 'party not found!',
       });
+    }
+  }
+
+  // getOne
+  static async getParty(req, res) {
+    try {
+      const {
+        rows,
+      } = await db.query('SELECT * FROM parties WHERE id=$1', [req.params.id]);
+      if (rows.length > 0) {
+        return res.status(200).json({
+          status: 200,
+          data: rows[0],
+        });
+      }
     } catch (error) {
-      console.log(error);
-    }
-  }
-
-  /* get a particular party */
-  static getOne(req, res) {
-    let party = {};
-    for (const key in parties) {
-      if (parties[key].id === parseInt(req.params.id)) {
-        party = parties[key];
-        break;
-      }
-    }
-    if (Object.keys(party).length > 0) {
-      return res.status(200).json({
-        status: 200,
-        data: party,
+      return res.status(400).json({
+        status: 400,
+        error: 'Party not found!',
       });
     }
-    return res.status(400).json({
-      status: 400,
-      error: 'Party not found!',
-    });
   }
 
-  /*  delete a particular political party */
-  static deleteParty(req, res) {
-    const partiesNumber = parties.length;
-    let newPartiesNumber = parties.length;
-    for (const i in parties) {
-      if (parties[i].id === parseInt(req.params.id)) {
-        parties.splice(i, 1);
-        newPartiesNumber -= 1;
-        break;
-      }
-    }
-    if (newPartiesNumber < partiesNumber) {
-      return res.status(200).json({
-        status: 200,
-        data: 'Party was Deleted ',
+  /* delete a meetup */
+  static async deleteParty(req, res) {
+    // Authorization
+    if (req.isAdmin !== 'admin') {
+      return res.status(401).json({
+        error: 'Unauthorized access',
       });
     }
-    return res.status(400).json({
-      status: 400,
-      error: 'Party was not deleted',
-    });
-  }
+    try {
+      const {
+        rows,
+      } = await db.query('DELETE FROM parties WHERE id=$1 RETURNING *', [req.params.partyId]);
 
+      if (rows.length > 0) {
+        return res.json({
+          status: 200,
+          message: 'party deleted',
+        });
+      }
+    } catch (error) {
+      return res.status(400).json({
+        status: 400,
+        error: 'Unexisting party',
+      });
+    }
+  }
 }
 export default Parties;

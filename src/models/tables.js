@@ -44,13 +44,13 @@ const create = () => {
         id SERIAL PRIMARY KEY,
         "firstName" VARCHAR(50) NOT NULL,
         "lastName" VARCHAR(50) NOT NULL,
-        "otherName" VARCHAR(50) NOT NULL,
-        email VARCHAR(100) NULL,
+        "otherName" VARCHAR(50) ,
+        email VARCHAR(100) NOT NULL,
         phone VARCHAR(15) NOT NULL,
         username VARCHAR(50) NOT NULL,
         password TEXT NOT NULL,
         "photoUrl" TEXT NOT NULL,
-        "isAdmin" BOOLEAN NOT NULL DEFAULT false
+        "isAdmin" BOOLEAN DEFAULT FALSE
       )`;
 
   const partiesTable = `CREATE TABLE IF NOT EXISTS
@@ -58,7 +58,7 @@ const create = () => {
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         "hqAddress" TEXT NOT NULL,
-        "logoUrl" TEXT []  NULL
+        "logoUrl" TEXT   NULL
       )`;
 
   const officesTable = `CREATE TABLE IF NOT EXISTS

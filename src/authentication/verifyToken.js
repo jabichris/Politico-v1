@@ -11,12 +11,12 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
-      return res.status(500).json({
-        error: 'failed to authenticate token',
+      return res.status(403).json({
+        error: 'authenticate failed',
       });
     }
     req.userId = decoded.userId || null;
-    req.userType = decoded.userType || null;
+    req.isAdmin = decoded.isAdmin || null;
     next();
     return true;
   });
