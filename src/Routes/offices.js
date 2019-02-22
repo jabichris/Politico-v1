@@ -1,10 +1,11 @@
 import express from 'express';
 import Offices from '../controllers/offices';
+import verifyToken from '../authentication/verifyToken';
 
 const router = express.Router();
 
-router.post('/', Offices.createOffice);
-router.get('/', Offices.allOffices);
+router.post('/', verifyToken, Offices.createOffice);
+router.get('/', verifyToken, Offices.allOffices);
 router.get('/:id', Offices.getOffice);
 // router.delete('/:id', Offices.deleteOffice);
 

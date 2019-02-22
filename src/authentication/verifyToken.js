@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['access-token'] || req.body['access-token'] || null;
-
+  const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({
       error: 'unauthorized access',
@@ -11,12 +10,20 @@ const verifyToken = (req, res, next) => {
 
   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
     if (err) {
-      return res.status(403).json({
+      return res.status(401).json({
+        status: 401,
         error: 'authenticate failed',
       });
     }
+    if (decoded.kindUser !== 'admin') {
+      return res.status(401).json({
+        status: 401,
+        error: 'Only admin authorised',
+      });
+    }
+
     req.userId = decoded.userId || null;
-    req.isAdmin = decoded.isAdmin || null;
+    req.isAdmin = decoded.kinderUser || null;
     next();
     return true;
   });
