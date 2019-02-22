@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -11,9 +12,11 @@ class User {
   /* signup */
   static async createAccount(req, res) {
     const text = `INSERT INTO
+
             users("firstName", "lastName", "otherName",  email, phone, username, "photoUrl", password)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8)
             returning id, "firstName", "lastName", "otherName", email, phone, username, "photoUrl" `;
+
 
     const values = [
       req.body.firstName,
@@ -24,9 +27,11 @@ class User {
       req.body.username,
       req.body.photoUrl,
       bcrypt.hashSync(req.body.password, 8),
+
     ];
 
     try {
+
       const {
         rows,
       } = await db.query(text, values);
@@ -39,10 +44,13 @@ class User {
     } catch (error) {
       return res.status(400).json({
         status: 400,
+
         message: 'Verify your inputs',
+
       });
     }
   }
+  /* login */
 
   // eslint-disable-next-line consistent-return
   static async signIn(req, res) {
@@ -59,6 +67,7 @@ class User {
         rows,
       } = await db.query('SELECT * FROM users WHERE email=$1', [req.body.email]);
       if (rows.length > 0) {
+
         for (let i = 0; i < rows.length; i += 1) {
           if (bcrypt.compareSync(req.body.password, rows[i].password)) {
             const kindUser = rows[i].isAdmin ? 'admin' : 'user';
@@ -83,6 +92,7 @@ class User {
 
             });
           }
+
         }
       } return res.status(400).json({
         status: 400,
@@ -91,7 +101,7 @@ class User {
     } catch (error) {
       return res.status(400).json({
         status: 400,
-        error: 'Try again,Username or Password is incorrect',
+        error: 'Try again,Username and Password are not matching',
       });
     }
   }
