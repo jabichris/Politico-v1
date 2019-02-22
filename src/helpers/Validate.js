@@ -12,7 +12,8 @@ export default class Validate {
     }
     return {
       isValid: false,
-      error: 'Please enter valid characters. Only alphabetic characters allowed.!!',
+
+      error: 'Please enter valid characters! Only alphabetic characters allowed.!!',
 
 
     };
@@ -33,7 +34,7 @@ export default class Validate {
     };
   }
 
-  static string(input, required) {
+  static title(input, required) {
     if (!input && !required) {
       return {
         isValid: true,

@@ -1,12 +1,7 @@
 import dotenv from 'dotenv';
-
-// eslint-disable-next-line import/no-unresolved
 import bcrypt from 'bcrypt';
-// eslint-disable-next-line import/no-unresolved
 import jwt from 'jsonwebtoken';
 import db from '../models/db';
-// eslint-disable-next-line import/no-unresolved
-
 import Validate from '../helpers/Validate';
 
 
@@ -15,66 +10,37 @@ dotenv.config();
 class User {
   /* signup */
   static async createAccount(req, res) {
-    // Validate inputs
-    const checkInputs = [];
-
-    checkInputs.push(Validate.name(req.body.firstName, true));
-    checkInputs.push(Validate.name(req.body.lastName, true));
-    checkInputs.push(Validate.email(req.body.email, true));
-    checkInputs.push(Validate.name(req.body.username, true));
-
-    for (let i = 0; i < checkInputs.length; i += 1) {
-      if (checkInputs[i].isValid === false) {
-        return res.status(400).json({
-          status: 400,
-          error: checkInputs[i].error,
-        });
-      }
-    }
-
     const text = `INSERT INTO
-            users("firstName", "lastName",  email, username, password, "isAdmin")
-            VALUES($1, $2, $3, $4, $5, $6)
-            returning id, "firstName", "lastName", email, username,  "isAdmin"`;
-
+            users("firstName", "lastName", "otherName",  email, phone, username, "photoUrl", password)
+            VALUES($1, $2, $3, $4, $5, $6, $7, $8)
+            returning id, "firstName", "lastName", "otherName", email, phone, username, "photoUrl" `;
 
     const values = [
       req.body.firstName,
       req.body.lastName,
+      req.body.otherName,
       req.body.email,
+      req.body.phone,
       req.body.username,
+      req.body.photoUrl,
       bcrypt.hashSync(req.body.password, 8),
-      req.body.isAdmin,
     ];
-    let checkUser = '';
 
     try {
-      if (req.body.email) {
-        checkUser = await db.query('SELECT * FROM users WHERE username=$1 OR email=$2', [req.body.username, req.body.email]);
-      } else {
-        console.log('No email');
-      }
-
-      if (checkUser.rows.length > 0) {
-        return res.status(200).json({
-          status: 200,
-          error: 'Sorry, this account already exists',
-        });
-      }
-
       const {
         rows,
       } = await db.query(text, values);
       if (rows.length > 0) {
-        rows[0].registered = new Date(rows[0].registered).toDateString();
         return res.status(201).json({
           status: 201,
           data: rows[0],
         });
       }
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      return res.status(400).json({
+        status: 400,
+        message: 'Verify your inputs',
+      });
     }
   }
 
@@ -95,7 +61,7 @@ class User {
       if (rows.length > 0) {
         for (let i = 0; i < rows.length; i += 1) {
           if (bcrypt.compareSync(req.body.password, rows[i].password)) {
-            const kindUser = rows[i].isAdmin ? 'admin' : 'normal';
+            const kindUser = rows[i].isAdmin ? 'admin' : 'user';
             const token = jwt.sign({
               userId: rows[i].id,
               kindUser,
@@ -118,13 +84,15 @@ class User {
             });
           }
         }
-      }
+      } return res.status(400).json({
+        status: 400,
+        error: 'Try again,Username and Password are not matching',
+      });
     } catch (error) {
       return res.status(400).json({
         status: 400,
         error: 'Try again,Username or Password is incorrect',
       });
-
     }
   }
 }

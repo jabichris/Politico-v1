@@ -48,8 +48,9 @@ const create = () => {
         email VARCHAR(100) NOT NULL,
         phone VARCHAR(15) NOT NULL,
         username VARCHAR(50) NOT NULL,
-        password TEXT NOT NULL,
         "photoUrl" TEXT NOT NULL,
+        password TEXT NOT NULL,
+        "registered" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         "isAdmin" BOOLEAN DEFAULT FALSE
       )`;
 

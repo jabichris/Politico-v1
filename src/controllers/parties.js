@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import db from '../models/db';
 import Validate from '../helpers/Validate';
 
@@ -87,16 +88,10 @@ class Parties {
 
   /* delete a meetup */
   static async deleteParty(req, res) {
-    // Authorization
-    if (req.isAdmin !== 'admin') {
-      return res.status(401).json({
-        error: 'Unauthorized access',
-      });
-    }
     try {
       const {
         rows,
-      } = await db.query('DELETE FROM parties WHERE id=$1 RETURNING *', [req.params.partyId]);
+      } = await db.query('DELETE FROM parties WHERE id=$1 RETURNING *', [req.params.id]);
 
       if (rows.length > 0) {
         return res.json({
@@ -104,6 +99,11 @@ class Parties {
           message: 'party deleted',
         });
       }
+
+      return res.json({
+        status: 200,
+        message: 'party not found',
+      });
     } catch (error) {
       return res.status(400).json({
         status: 400,
