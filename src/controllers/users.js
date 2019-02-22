@@ -12,7 +12,6 @@ class User {
   /* signup */
   static async createAccount(req, res) {
     const text = `INSERT INTO
-
             users("firstName", "lastName", "otherName",  email, phone, username, "photoUrl", password)
             VALUES($1, $2, $3, $4, $5, $6, $7, $8)
             returning id, "firstName", "lastName", "otherName", email, phone, username, "photoUrl" `;
