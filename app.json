@@ -1,0 +1,16 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "Politico-v1",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
